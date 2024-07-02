@@ -1,0 +1,110 @@
+/* CustomizableLayout.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.preview-container {
+  display: flex;
+  /* flex-direction: column; */
+  width: 100%;
+  height: 800px;
+  overflow: hidden;
+  position: relative;
+}
+
+.preview-header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e0e0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.preview-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e0e0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.preview-content {
+  display: flex;
+  /* flex-grow: 1; */
+  position: relative;
+}
+
+.preview-drawer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  position: relative;
+}
+
+.preview-drawer-left {
+  order: -1;
+}
+
+.preview-drawer-right {
+  order: 1;
+}
+
+.preview-main {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-drag-handle {
+  position: absolute;
+  background-color: #1976d2;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.preview-drag-handle:hover {
+  opacity: 1;
+}
+
+.preview-drag-handle-bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  cursor: ns-resize;
+}
+
+.preview-drag-handle-top {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  cursor: ns-resize;
+}
+
+.preview-drag-handle-left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  cursor: ew-resize;
+}
+
+.preview-drag-handle-right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 5px;
+  cursor: ew-resize;
+}
