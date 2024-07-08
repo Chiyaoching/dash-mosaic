@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { 
   Box, 
   Drawer, 
-  AppBar, 
   CssBaseline, 
   Toolbar, 
   List, 
@@ -66,7 +65,7 @@ const CustomizableLayout = () => {
       newWidth = roundToNearest10(newWidth);
       // console.log(drawerPosition, newWidth)
       if (newWidth <= maxDrawerWidth) {
-        setDrawerWidth(Math.max(180, newWidth)); // it's 2x small on the preview.
+        setDrawerWidth(Math.max(180, newWidth));
       }
     };
 
@@ -276,136 +275,286 @@ export default CustomLayout;
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <Drawer
-        variant="permanent"
-        sx={{
-          width: 300,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: 300, boxSizing: 'border-box' },
+    <div className='custom-layout-container'>
+      <details
+        style={{
+          width: '300px',
+          padding: '10px',
+          borderRadius: '4px',
+          // backgroundColor: '#f4f4f4',
+          marginBottom: '10px',
         }}
       >
-        <Toolbar />
-        <Box sx={{ overflow: 'auto' }}>
-          <List>
-            <ListItem>
-              <ListItemText primary="Header" />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Enable" />
-              <Switch
-                edge="end"
-                checked={headerEnabled}
-                onChange={(e) => setHeaderEnabled(e.target.checked)}
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Height" />
-              <Slider
-                value={headerHeight}
-                onChange={(e, newValue) => setHeaderHeight(newValue)}
-                aria-labelledby="header-height-slider"
-                valueLabelDisplay="auto"
-                step={5}
-                marks
-                min={40}
-                max={80}
-                sx={{ width: 100 }}
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Overlap" />
-              <Switch
-                edge="end"
-                checked={headerOverlap}
-                onChange={(e) => setHeaderOverlap(e.target.checked)}
-              />
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <ListItemText primary="Footer" />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Enable" />
-              <Switch
-                edge="end"
-                checked={footerEnabled}
-                onChange={(e) => setFooterEnabled(e.target.checked)}
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Height" />
-              <Slider
-                value={footerHeight}
-                onChange={(e, newValue) => setFooterHeight(newValue)}
-                aria-labelledby="footer-height-slider"
-                valueLabelDisplay="auto"
-                step={5}
-                marks
-                min={40}
-                max={120}
-                sx={{ width: 100 }}
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Overlap" />
-              <Switch
-                edge="end"
-                checked={footerOverlap}
-                onChange={(e) => setFooterOverlap(e.target.checked)}
-              />
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <ListItemText primary="Drawer" />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Width" />
-              <Slider
-                value={drawerWidth}
-                onChange={(e, newValue) => setDrawerWidth(newValue)}
-                aria-labelledby="drawer-width-slider"
-                valueLabelDisplay="auto"
-                step={10}
-                marks
-                min={180}
-                max={300}
-                sx={{ width: 100 }}
-              />
-            </ListItem>
-            <ListItem>
-              <FormControl fullWidth>
-                <InputLabel id="drawer-position-label">Position</InputLabel>
-                <Select
-                  labelId="drawer-position-label"
-                  value={drawerPosition}
-                  label="Position"
-                  onChange={(e) => setDrawerPosition(e.target.value)}
-                >
-                  <MenuItem value="left">Left</MenuItem>
-                  <MenuItem value="right">Right</MenuItem>
-                </Select>
-              </FormControl>
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <Button variant="contained" color="primary" onClick={exportComponent} fullWidth>
-                Export Component
-              </Button>
-            </ListItem>
-          </List>
-        </Box>
-      </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Toolbar />
-        <Typography variant="h4" gutterBottom>
-          Layout Preview
-        </Typography>
-        <PreviewLayout />
-      </Box>
-    </Box>
-  );
+        <summary
+          style={{
+            fontSize: '14px',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+          }}
+        >
+          Customize Layout
+        </summary>
+        <div
+          style={{
+            padding: '10px',
+          }}
+        >
+          <details
+            style={{
+              padding: '10px',
+              borderRadius: '4px',
+              backgroundColor: '#eaeaea',
+              marginBottom: '10px',
+            }}
+          >
+            <summary
+              style={{
+                fontSize: '14px',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+              }}
+            >
+              Header
+            </summary>
+            <div
+              style={{
+                padding: '10px',
+              }}
+            >
+              <label>
+                Enable:
+                <Switch
+                  checked={headerEnabled}
+                  onChange={(e) => setHeaderEnabled(e.target.checked)}
+                />
+              </label>
+              <label>
+                Height:
+                <input
+                  type="number"
+                  value={headerHeight}
+                  onChange={(e) => setHeaderHeight(e.target.value)}
+                  style={{ marginLeft: '10px' }}
+                />
+              </label>
+            </div>
+          </details>
+          <details
+            style={{
+              padding: '10px',
+              borderRadius: '4px',
+              backgroundColor: '#eaeaea',
+              marginBottom: '10px',
+            }}
+          >
+            <summary
+              style={{
+                fontSize: '14px',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+              }}
+            >
+              Footer
+            </summary>
+            <div
+              style={{
+                padding: '10px',
+              }}
+            >
+              <label>
+                Enable:
+                <Switch
+                  checked={footerEnabled}
+                  onChange={(e) => setFooterEnabled(e.target.checked)}
+                />
+              </label>
+              <label>
+                Height:
+                <input
+                  type="number"
+                  value={footerHeight}
+                  onChange={(e) => setFooterHeight(e.target.value)}
+                  style={{ marginLeft: '10px' }}
+                />
+              </label>
+            </div>
+          </details>
+          <details
+            style={{
+              padding: '10px',
+              borderRadius: '4px',
+              backgroundColor: '#eaeaea',
+              marginBottom: '10px',
+            }}
+          >
+            <summary
+              style={{
+                fontSize: '14px',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+              }}
+            >
+              Drawer
+            </summary>
+            <div
+              style={{
+                padding: '10px',
+              }}
+            >
+              <label>
+                Width:
+                <input
+                  type="number"
+                  value={drawerWidth}
+                  onChange={(e) => setDrawerWidth(e.target.value)}
+                  style={{ marginLeft: '10px' }}
+                />
+              </label>
+              <label>
+                Left/Right side:
+                <Switch
+                  checked={drawerPosition === 'left'}
+                  onChange={(e) => setDrawerPosition(e.target.checked ? 'left' : 'right')}
+                />
+              </label>
+            </div>
+          </details>
+        </div>
+      </details>
+      <PreviewLayout />
+    </div>
+  )
+  // return (
+  //   <Box sx={{ display: 'flex' }}>
+  //     <CssBaseline />
+  //     <Drawer
+  //       variant="permanent"
+  //       sx={{
+  //         width: 300,
+  //         flexShrink: 0,
+  //         [`& .MuiDrawer-paper`]: { width: 300, boxSizing: 'border-box' },
+  //       }}
+  //     >
+  //       <Toolbar />
+  //       <Box sx={{ overflow: 'auto' }}>
+  //         <List>
+  //           <ListItem>
+  //             <ListItemText primary="Header" />
+  //           </ListItem>
+  //           <ListItem>
+  //             <ListItemText primary="Enable" />
+  //             <Switch
+  //               edge="end"
+  //               checked={headerEnabled}
+  //               onChange={(e) => setHeaderEnabled(e.target.checked)}
+  //             />
+  //           </ListItem>
+  //           <ListItem>
+  //             <ListItemText primary="Height" />
+  //             <Slider
+  //               value={headerHeight}
+  //               onChange={(e, newValue) => setHeaderHeight(newValue)}
+  //               aria-labelledby="header-height-slider"
+  //               valueLabelDisplay="auto"
+  //               step={5}
+  //               marks
+  //               min={40}
+  //               max={80}
+  //               sx={{ width: 100 }}
+  //             />
+  //           </ListItem>
+  //           <ListItem>
+  //             <ListItemText primary="Overlap" />
+  //             <Switch
+  //               edge="end"
+  //               checked={headerOverlap}
+  //               onChange={(e) => setHeaderOverlap(e.target.checked)}
+  //             />
+  //           </ListItem>
+  //           <Divider />
+  //           <ListItem>
+  //             <ListItemText primary="Footer" />
+  //           </ListItem>
+  //           <ListItem>
+  //             <ListItemText primary="Enable" />
+  //             <Switch
+  //               edge="end"
+  //               checked={footerEnabled}
+  //               onChange={(e) => setFooterEnabled(e.target.checked)}
+  //             />
+  //           </ListItem>
+  //           <ListItem>
+  //             <ListItemText primary="Height" />
+  //             <Slider
+  //               value={footerHeight}
+  //               onChange={(e, newValue) => setFooterHeight(newValue)}
+  //               aria-labelledby="footer-height-slider"
+  //               valueLabelDisplay="auto"
+  //               step={5}
+  //               marks
+  //               min={40}
+  //               max={120}
+  //               sx={{ width: 100 }}
+  //             />
+  //           </ListItem>
+  //           <ListItem>
+  //             <ListItemText primary="Overlap" />
+  //             <Switch
+  //               edge="end"
+  //               checked={footerOverlap}
+  //               onChange={(e) => setFooterOverlap(e.target.checked)}
+  //             />
+  //           </ListItem>
+  //           <Divider />
+  //           <ListItem>
+  //             <ListItemText primary="Drawer" />
+  //           </ListItem>
+  //           <ListItem>
+  //             <ListItemText primary="Width" />
+  //             <Slider
+  //               value={drawerWidth}
+  //               onChange={(e, newValue) => setDrawerWidth(newValue)}
+  //               aria-labelledby="drawer-width-slider"
+  //               valueLabelDisplay="auto"
+  //               step={10}
+  //               marks
+  //               min={180}
+  //               max={300}
+  //               sx={{ width: 100 }}
+  //             />
+  //           </ListItem>
+  //           <ListItem>
+  //             <FormControl fullWidth>
+  //               <InputLabel id="drawer-position-label">Position</InputLabel>
+  //               <Select
+  //                 labelId="drawer-position-label"
+  //                 value={drawerPosition}
+  //                 label="Position"
+  //                 onChange={(e) => setDrawerPosition(e.target.value)}
+  //               >
+  //                 <MenuItem value="left">Left</MenuItem>
+  //                 <MenuItem value="right">Right</MenuItem>
+  //               </Select>
+  //             </FormControl>
+  //           </ListItem>
+  //           <Divider />
+  //           <ListItem>
+  //             <Button variant="contained" color="primary" onClick={exportComponent} fullWidth>
+  //               Export Component
+  //             </Button>
+  //           </ListItem>
+  //         </List>
+  //       </Box>
+  //     </Drawer>
+  //     <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+  //       {/* <Toolbar /> */}
+  //       <Typography variant="h4" gutterBottom>
+  //         Layout Preview
+  //       </Typography>
+  //       <PreviewLayout />
+  //     </Box>
+  //   </Box>
+  // );
 };
 
 export default CustomizableLayout;

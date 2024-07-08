@@ -1,16 +1,15 @@
 /* CustomizableLayout.css */
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
+.custom-layout-container {
+  display: flex;
+  flex: 0;
 }
 
 .preview-container {
   display: flex;
   /* flex-direction: column; */
   width: 100%;
-  height: 800px;
+  /* height: 800px; */
   overflow: hidden;
   position: relative;
 }
@@ -64,6 +63,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 500px;
+  height: calc(100vh - 170px);
 }
 
 .preview-drag-handle {
